@@ -21,6 +21,7 @@ const JSONParameterToRequestBody = (req, res, next) => {
 router.get('/', async (req, res) => {
     try {
         const events = await Event.findAll({
+            where: {type: 0},
             attributes: ['id', 'address', 'text', 'photo', 'members', 'reserve', 'date']
         })
 
@@ -35,7 +36,7 @@ router.post('/',
     adminMiddleware,
     upload.single('photo'),
     JSONParameterToRequestBody,
-    notEmpty('address', 'text', 'date', 'members', 'reserve'),
+    notEmpty('address', 'text', 'date', 'members', 'reserve', 'title'),
 async (req, res) => {
     try {
         console.log(req.file);
@@ -68,7 +69,7 @@ async (req, res) => {
 })
 
 router.post('/outofcollege',
-    authMiddleware, 
+    authMiddleware,
     upload.single('photo'),
     adminMiddleware,
     JSONParameterToRequestBody,
