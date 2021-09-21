@@ -7,7 +7,10 @@ module.exports = sequelize => {
         address: DataTypes.STRING,
         title: DataTypes.STRING,
         text: DataTypes.TEXT,
-        date: DataTypes.STRING,
+        date_start: {
+            type: DataTypes.DATE,
+        },
+        date_end: DataTypes.DATE,
         members: DataTypes.INTEGER,
         photo: DataTypes.STRING,
         reserve: DataTypes.INTEGER,

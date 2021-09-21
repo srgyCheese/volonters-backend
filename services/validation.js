@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator')
+const { body, validationResult } = require('express-validator')
 
 const checkResults = (req, res, next) => {
     const errors = validationResult(req)
@@ -10,4 +10,6 @@ const checkResults = (req, res, next) => {
     next()
 }
 
-module.exports = checkResults
+const notEmpty = (...params) => params.map(param => body(param).notEmpty())
+
+module.exports = {notEmpty, checkResults}

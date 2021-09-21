@@ -8,7 +8,7 @@ const router = Router()
 
 router.post('/register', [
     body('fio').notEmpty(),
-    body('password').isLength({min: 4})
+    body('password').isLength({min: 4, max: 100})
 ], async (req, res) => {
     try {
         const errors = validationResult(req)
